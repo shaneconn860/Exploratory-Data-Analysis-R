@@ -1,12 +1,19 @@
-
 ---
-title: "qplot"
+title: "Exploratory Data Analysis - qplot"
 output: 
   html_document:
     keep_md: true
 ---
 
 ## qplot
+
+```{r setup, include=FALSE}
+
+knitr::opts_chunk$set(echo = TRUE)
+
+knitr::opts_chunk$set( fig.path = "figs/fig-")
+
+```
 
 First, load the ggplot2 package and the mpg dataset that is associated with it.
 

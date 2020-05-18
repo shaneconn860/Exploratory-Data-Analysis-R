@@ -1,12 +1,13 @@
-
 ---
-title: "qplot"
+title: "Exploratory Data Analysis - qplot"
 output: 
   html_document:
     keep_md: true
 ---
 
 ## qplot
+
+
 
 First, load the ggplot2 package and the mpg dataset that is associated with it.
 
@@ -45,7 +46,7 @@ We see that there are 234 points in the dataset concerning 11 different characte
 qplot(displ, hwy, data = mpg)
 ```
 
-![](qplot_files/figure-html/unnamed-chunk-3-1.png)<!-- -->
+![](figs/fig-unnamed-chunk-3-1.png)<!-- -->
 
 A nice scatterplot done simply, right? All the labels are provided. The first argument is shown along the x-axis and the second along the y-axis. The negative trend (increasing displacement and lower gas mileage) is pretty clear. Now suppose we want to do the same plot but this time use different colors to distinguish between the 3 factors (subsets) of different types of drive (drv) in the data (front-wheel, rear-wheel, and 4-wheel). Again, qplot makes this very easy. We'll just add what ggplot2 calls an aesthetic, a fourth argument, color, and set it equal to drv. Try this now. (Use the up arrow key to save some typing.)
 
@@ -54,7 +55,7 @@ A nice scatterplot done simply, right? All the labels are provided. The first ar
 qplot(displ, hwy, data = mpg, color=drv)
 ```
 
-![](qplot_files/figure-html/unnamed-chunk-4-1.png)<!-- -->
+![](figs/fig-unnamed-chunk-4-1.png)<!-- -->
 
 See the legend to the right which qplot helpfully supplied? The colors were automatically assigned by qplot so the legend decodes the colors for you. Notice that qplot automatically used dots or points to indicate the data. These points are geoms (geometric objects). We could have used a different aesthetic, for instance shape instead of color, to distinguish between the drive types.
 
@@ -71,7 +72,7 @@ qplot(displ, hwy, data = mpg, color=drv, geom=c("point", "smooth"))
 ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 ```
 
-![](qplot_files/figure-html/unnamed-chunk-5-1.png)<!-- -->
+![](figs/fig-unnamed-chunk-5-1.png)<!-- -->
 
 Notice the gray areas surrounding each trend lines. These indicate the 95% confidence intervals for the lines.
 
@@ -82,7 +83,7 @@ Before we leave qplot's scatterplotting ability, call qplot again, this time wit
 qplot(y=hwy, data = mpg, color=drv)
 ```
 
-![](qplot_files/figure-html/unnamed-chunk-6-1.png)<!-- -->
+![](figs/fig-unnamed-chunk-6-1.png)<!-- -->
 
 What's this plot showing? We see the x-axis ranges from 0 to 250 and we remember that we had 234 data points in our set, so we can infer that each point in the plot represents one of the hwy values (indicated by the y-axis). We've created the vector myhigh for you which contains the hwy data from the mpg dataset. Look at myhigh now.
 
@@ -103,7 +104,7 @@ The all-purpose qplot can also create box and whisker plots.  Call qplot now wit
 qplot(drv, hwy, data=mpg, geom = "boxplot")
 ```
 
-![](qplot_files/figure-html/unnamed-chunk-7-1.png)<!-- -->
+![](figs/fig-unnamed-chunk-7-1.png)<!-- -->
 
 We see 3 boxes, one for each drive. Now to impress you, call qplot with 5 arguments. The first 4 are just as you used previously, (drv, hwy, data set equal to mpg, and geom set equal to the string "boxplot"). Now add a fifth argument, color, equal to manufacturer.
 
@@ -112,7 +113,7 @@ We see 3 boxes, one for each drive. Now to impress you, call qplot with 5 argume
 qplot(drv, hwy, data=mpg, geom = "boxplot", color=manufacturer)
 ```
 
-![](qplot_files/figure-html/unnamed-chunk-8-1.png)<!-- -->
+![](figs/fig-unnamed-chunk-8-1.png)<!-- -->
 
 It's a little squished but we just wanted to illustrate qplot's capabilities. Notice that there are still 3 regions of the plot (determined by the factor drv). Each is subdivided into several boxes depicting different manufacturers.
 
@@ -127,7 +128,7 @@ qplot(hwy, data = mpg, fill=drv)
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ```
 
-![](qplot_files/figure-html/unnamed-chunk-9-1.png)<!-- -->
+![](figs/fig-unnamed-chunk-9-1.png)<!-- -->
 
 See how qplot consistently uses the colors. Red (if 4-wheel drv is in the bin) is at the bottom of the bin, then green on top of it (if present), followed by blue (rear wheel drv). The color lets us see right away that 4-wheel drive vehicles in this dataset don't have gas mileages exceeding 30 miles per gallon.
 
@@ -142,7 +143,7 @@ We'll do two plots, a scatterplot and then a histogram, each with 3 facets. For 
 qplot(displ, hwy, data=mpg, facets= .~drv)
 ```
 
-![](qplot_files/figure-html/unnamed-chunk-10-1.png)<!-- -->
+![](figs/fig-unnamed-chunk-10-1.png)<!-- -->
 
 The result is a 1 by 3 array of plots. Note how each is labeled at the top with the factor label (4,f, or r). This shows us more detailed information than the histogram. We see the relationship between displacement and highway mileage for each of the 3 drive factors.
 
@@ -153,4 +154,4 @@ Now we'll do a histogram, again calling qplot with 4 arguments. This time, since
 qplot(hwy, data=mpg, facets = drv~., binwidth=2)
 ```
 
-![](qplot_files/figure-html/unnamed-chunk-11-1.png)<!-- -->
+![](figs/fig-unnamed-chunk-11-1.png)<!-- -->
