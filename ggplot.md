@@ -28,7 +28,7 @@ qplot(displ, hwy, data = mpg, geom = c("point", "smooth"), facets = .~drv)
 ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 ```
 
-![](figs/fig-unnamed-chunk-1-1.png)<!-- -->
+![](figs1/fig1-unnamed-chunk-1-1.png)<!-- -->
 
 We see a 3 facet plot, one for each drive type (4, f, and r). Now we'll see how ggplot works. We'll build up a similar plot using the basic components of the package. We'll do this in a series of steps.
 
@@ -79,7 +79,7 @@ Note that if you tried to print g with the expressions g or print(g) you'd get a
 g+geom_point()
 ```
 
-![](figs/fig-unnamed-chunk-4-1.png)<!-- -->
+![](figs1/fig1-unnamed-chunk-4-1.png)<!-- -->
 
 By calling the function geom_point you added a layer. By not assigning the expression to a variable you displayed a plot. Notice that you didn't have to pass any arguments to the function geom_point. That's because the object g has all the data stored in it. (Remember you saw that when you ran summary on g before.) Now use the expression you just typed (g + geom_point()) and add to it another layer, a call to geom_smooth(). Notice the red message R gives you.
 
@@ -92,7 +92,7 @@ g+geom_point() + geom_smooth()
 ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 ```
 
-![](figs/fig-unnamed-chunk-5-1.png)<!-- -->
+![](figs1/fig1-unnamed-chunk-5-1.png)<!-- -->
 
 The gray shadow around the blue line is the confidence band. See how wide it is at the right? Let's try a different smoothing function. Use the up arrow to recover the expression you just typed, and instead of calling geom_smooth with no arguments, call it with the argument method set equal to the string "lm".
 
@@ -105,7 +105,7 @@ g+geom_point() + geom_smooth(method="lm")
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-![](figs/fig-unnamed-chunk-6-1.png)<!-- -->
+![](figs1/fig1-unnamed-chunk-6-1.png)<!-- -->
 
 By changing the smoothing function to "lm" (linear model) ggplot2 generated a regression line through the data. Now recall the expression you just used and add to it another call, this time to the function facet_grid. Use the formula . ~ drv as it argument. Note that this is the same type of formula used in the calls to qplot.
 
@@ -118,7 +118,7 @@ g+geom_point() + geom_smooth(method="lm") + facet_grid(.~drv)
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-![](figs/fig-unnamed-chunk-7-1.png)<!-- -->
+![](figs1/fig1-unnamed-chunk-7-1.png)<!-- -->
 
 Notice how each panel is labeled with the appropriate factor. All the data associated with 4-wheel drive cars is in the leftmost panel, front-wheel drive data is shown in the middle panel, and rear-wheel drive data in the rightmost. Notice that this is similar to the plot you created at the start of the lesson using qplot. (We used a different smoothing function than previously.)
 
@@ -133,7 +133,7 @@ g+geom_point() + geom_smooth(method="lm") + facet_grid(.~drv) + ggtitle("Swirl R
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-![](figs/fig-unnamed-chunk-8-1.png)<!-- -->
+![](figs1/fig1-unnamed-chunk-8-1.png)<!-- -->
 
 Now that you've seen the basics we'll talk about customizing. Each of the “geom” functions (e.g., _point and _smooth) has options to modify it. Also, the function theme() can be used to modify aspects of the entire plot, e.g. the position of the legend. Two standard appearance themes are included in ggplot. These are theme_gray() which is the default theme (gray background with white grid lines) and theme_bw() which is a plainer (black and white) color scheme.
 
@@ -144,7 +144,7 @@ Let's practice modifying aesthetics now. We'll use the graphic object g that we 
 g+geom_point(color="pink", size=4, alpha=1/2)
 ```
 
-![](figs/fig-unnamed-chunk-9-1.png)<!-- -->
+![](figs1/fig1-unnamed-chunk-9-1.png)<!-- -->
 
 Notice the different shades of pink? That's the result of the alpha aesthetic which you set to 1/2. This aesthetic tells ggplot how transparent the points should be. Darker circles indicate values hit by multiple data points.
 
@@ -155,7 +155,7 @@ Now we'll modify the aesthetics so that color indicates which drv type each poin
 g+geom_point(size=4, alpha=1/2, aes(color=drv))
 ```
 
-![](figs/fig-unnamed-chunk-10-1.png)<!-- -->
+![](figs1/fig1-unnamed-chunk-10-1.png)<!-- -->
 
 Notice the helpful legend on the right decoding the relationship between color and drv.
 
@@ -166,7 +166,7 @@ Now we'll practice modifying labels. Again, we'll use g and add to it calls to 3
 g + geom_point(aes(color = drv)) + labs(title="Swirl Rules!") + labs(x="Displacement", y="Hwy Mileage")
 ```
 
-![](figs/fig-unnamed-chunk-11-1.png)<!-- -->
+![](figs1/fig1-unnamed-chunk-11-1.png)<!-- -->
 
 Note that you could have combined the two calls to the function labs in the previous example. Now we'll practice customizing the geom_smooth calls. Use g and add to it a call to geom_point setting the color to drv type (remember to use the call to the aes function), size set to 2 and alpha to 1/2. Then add a call to geom_smooth with 4 arguments. Set size equal to 4, linetype to 3, method to "lm", and se to FALSE.
 
@@ -179,7 +179,7 @@ g + geom_point(aes(color = drv), size=2, alpha=1/2) + geom_smooth(size=4, linety
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-![](figs/fig-unnamed-chunk-12-1.png)<!-- -->
+![](figs1/fig1-unnamed-chunk-12-1.png)<!-- -->
 
 What did these arguments do? The method specified a linear regression (note the negative slope indicating that the bigger the displacement the lower the gas mileage), the linetype specified that it should be dashed (not continuous), the size made the dashes big, and the se flag told ggplot to turn off the gray shadows indicating standard errors (confidence intervals).
 
@@ -190,7 +190,7 @@ Finally, let's do a simple plot using the black and white theme, theme_bw. Speci
 g + geom_point(aes(color = drv)) + theme_bw(base_family="Times")
 ```
 
-![](figs/fig-unnamed-chunk-13-1.png)<!-- -->
+![](figs1/fig1-unnamed-chunk-13-1.png)<!-- -->
 
 No more gray background! Also, if you have good eyesight, you'll notice that the font in the labels changed.
 
@@ -261,7 +261,7 @@ We'll build the plot up step by step. First add to g a call to the function geom
 g + geom_point()
 ```
 
-![](figs/fig-unnamed-chunk-20-1.png)<!-- -->
+![](figs1/fig1-unnamed-chunk-20-1.png)<!-- -->
 
 A simple, yet comfortingly familiar scatterplot appears. Let's make our display a 2 dimensional multi-panel plot. Recall your last command (with the up arrow) and add to it a call the function facet_grid. Give it 2 arguments. The first is the formula drv~cyl, and the second is the argument margins set equal to TRUE. Try this now.
 
@@ -270,7 +270,7 @@ A simple, yet comfortingly familiar scatterplot appears. Let's make our display 
 g + geom_point() + facet_grid(drv~cyl, margins=TRUE)
 ```
 
-![](figs/fig-unnamed-chunk-21-1.png)<!-- -->
+![](figs1/fig1-unnamed-chunk-21-1.png)<!-- -->
 
 A 4 by 5 plot, huh? The margins argument tells ggplot to display the marginal totals over each row and column, so instead of seeing 3 rows (the number of drv factors) and 4 columns (the number of cyl factors) we see a 4 by 5 display. Note that the panel in position (4,5) is a tiny version of the scatterplot of the entire dataset.
 
@@ -285,7 +285,7 @@ g + geom_point() + facet_grid(drv~cyl, margins=TRUE) + geom_smooth(method="lm", 
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-![](figs/fig-unnamed-chunk-22-1.png)<!-- -->
+![](figs1/fig1-unnamed-chunk-22-1.png)<!-- -->
 
 Angry Birds? Finally, add to your last command (or retype it if you like to type) a call to the function labs with 3 arguments. These are x set to "Displacement", y set to "Highway Mileage", and title set to "Swirl Rules!".
 
@@ -298,4 +298,4 @@ g + geom_point() + facet_grid(drv~cyl, margins=TRUE) + geom_smooth(method="lm", 
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-![](figs/fig-unnamed-chunk-23-1.png)<!-- -->
+![](figs1/fig1-unnamed-chunk-23-1.png)<!-- -->
