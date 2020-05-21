@@ -11,7 +11,7 @@ output:
 
 knitr::opts_chunk$set(echo = TRUE)
 
-knitr::opts_chunk$set( fig.path = "figs/fig-")
+knitr::opts_chunk$set( fig.path = "figs2/fig2-")
 
 library(ggplot2)
 

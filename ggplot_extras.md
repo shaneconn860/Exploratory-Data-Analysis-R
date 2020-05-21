@@ -43,7 +43,7 @@ qplot(data=diamonds, price)
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ```
 
-![](figs/fig-unnamed-chunk-2-1.png)<!-- -->
+![](figs2/fig2-unnamed-chunk-2-1.png)<!-- -->
 
 Not only do you get a histogram, but you also get a message about the binwidth defaulting to range/30. Recall that range refers to the spread or dispersion of the data, in this case price of diamonds. Run the R command range now with diamonds$price as its argument.
 
@@ -65,7 +65,7 @@ Rerun qplot now with 3 arguments. The first is price, the second is data set equ
 qplot(data=diamonds, price, binwidth=18497/30)
 ```
 
-![](figs/fig-unnamed-chunk-4-1.png)<!-- -->
+![](figs2/fig2-unnamed-chunk-4-1.png)<!-- -->
 
 No more messages in red, but a histogram almost identical to the previous one! If you typed 18497/30 at the command line you would get the result 616.5667. This means that the height of each bin tells you how many diamonds have a price between x and x+617 where x is the left edge of the bin.
 
@@ -95,7 +95,7 @@ You're probably sick of it but rerun qplot again, this time with 4 arguments. Th
 qplot(data=diamonds, price, binwidth=18497/30, fill=cut)
 ```
 
-![](figs/fig-unnamed-chunk-7-1.png)<!-- -->
+![](figs2/fig2-unnamed-chunk-7-1.png)<!-- -->
 
 This shows how the counts within each price grouping (bin) are distributed among the different cuts of diamonds. Notice how qplot displays these distributions relative to the cut legend on the right. The fair cut diamonds are at the bottom of each bin, the good cuts are above them, then the very good above them, until the ideal cuts are at the top of each bin. You can quickly see from this display that there are very few fair cut diamonds priced above $5000.
 
@@ -106,7 +106,7 @@ Now we'll replot the histogram as a density function which will show the proport
 qplot(price, data=diamonds, geom = "density")
 ```
 
-![](figs/fig-unnamed-chunk-8-1.png)<!-- -->
+![](figs2/fig2-unnamed-chunk-8-1.png)<!-- -->
 
 Notice that the shape is similar to that of the histogram we saw previously. The highest peak is close to 0 on the x-axis meaning that most of the diamonds in the dataset were inexpensive. In general, as prices increase (move right along the x-axis) the number of diamonds (at those prices) decrease. The exception to this is when the price is around $4000; there's a slight increase in frequency. Let's see if cut is responsible for this increase.
 
@@ -117,7 +117,7 @@ Rerun qplot, this time with 4 arguments. The first 2 are the usual, and the thir
 qplot(price, data=diamonds, geom = "density", color=cut)
 ```
 
-![](figs/fig-unnamed-chunk-9-1.png)<!-- -->
+![](figs2/fig2-unnamed-chunk-9-1.png)<!-- -->
 
 See how easily qplot did this? Four of the five cuts have 2 peaks, one at price $1000 and the other between $4000 and $5000. The exception is the Fair cut which has a single peak at $2500. This gives us a little more understanding of the histogram we saw before.
 
@@ -130,7 +130,7 @@ Let's start with carat and price. Use these as the first 2 arguments of qplot. T
 qplot(carat, price, data=diamonds)
 ```
 
-![](figs/fig-unnamed-chunk-10-1.png)<!-- -->
+![](figs2/fig2-unnamed-chunk-10-1.png)<!-- -->
 
 We see the positive trend here, as the number of carats increases the price also goes up.
 
@@ -145,7 +145,7 @@ qplot(carat, price, data=diamonds, shape=cut)
 ## Warning: Using shapes for an ordinal variable is not advised
 ```
 
-![](figs/fig-unnamed-chunk-11-1.png)<!-- -->
+![](figs2/fig2-unnamed-chunk-11-1.png)<!-- -->
 
 The same scatterplot appears, except the cuts of the diamonds are distinguished by different symbols. The legend at the right tells you which symbol is associated with each cut. These are small and hard to read, so rerun the same command, except this time instead of setting the argument shape equal to cut, set the argument color equal to cut.
 
@@ -154,7 +154,7 @@ The same scatterplot appears, except the cuts of the diamonds are distinguished 
 qplot(carat, price, data=diamonds, color=cut)
 ```
 
-![](figs/fig-unnamed-chunk-12-1.png)<!-- -->
+![](figs2/fig2-unnamed-chunk-12-1.png)<!-- -->
 
 We'll rerun the plot you just did (carat,price,data=diamonds and color=cut) but add an additional parameter. Use geom_smooth with the method set equal to the string "lm".
 
@@ -167,7 +167,7 @@ qplot(carat, price, data=diamonds, color=cut) + geom_smooth(method="lm")
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-![](figs/fig-unnamed-chunk-13-1.png)<!-- -->
+![](figs2/fig2-unnamed-chunk-13-1.png)<!-- -->
 
 Again, we see the same scatterplot, but slightly more compressed and showing 5 regression lines, one for each cut of diamonds. It might be hard to see, but around each line is a shadow showing the 95% confidence interval. We see, unsurprisingly, that the better the cut, the steeper (more positive) the slope of the lines.
 
@@ -182,7 +182,7 @@ qplot(carat,price,data=diamonds, color=cut, facets=.~cut) + geom_smooth(method="
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-![](figs/fig-unnamed-chunk-14-1.png)<!-- -->
+![](figs2/fig2-unnamed-chunk-14-1.png)<!-- -->
 
 Now for some ggplots.
 
@@ -229,7 +229,7 @@ We see that g holds the entire dataset. Now suppose we want to see a scatterplot
 g + geom_point(alpha=1/3)
 ```
 
-![](figs/fig-unnamed-chunk-17-1.png)<!-- -->
+![](figs2/fig2-unnamed-chunk-17-1.png)<!-- -->
 
 That's somewhat interesting. We see that depth ranges from 43 to 79, but the densest distribution is around 60 to 65. Suppose we want to see if this relationship (between depth and price) is affected by cut or carat. We know cut is a factor with 5 levels (Fair, Good, Very Good, Premium, and Ideal). But carat is numeric and not a discrete factor. Can we do this?
 
@@ -275,7 +275,7 @@ Now add to g calls to 2 functions. This first is a call to geom_point with the a
 g + geom_point(alpha=1/3) + facet_grid(cut ~ car2)
 ```
 
-![](figs/fig-unnamed-chunk-22-1.png)<!-- -->
+![](figs2/fig2-unnamed-chunk-22-1.png)<!-- -->
 
 We see a multi-facet plot with 5 rows, each corresponding to a cut factor. Not surprising. What is surprising is the number of columns. We were expecting 3 and got 4. Why?
 
@@ -305,7 +305,7 @@ g + geom_point(alpha=1/3) + facet_grid(cut ~ car2) + geom_smooth(method="lm", si
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-![](figs/fig-unnamed-chunk-24-1.png)<!-- -->
+![](figs2/fig2-unnamed-chunk-24-1.png)<!-- -->
 
 Lastly, ggplot2 can, of course, produce boxplots. This final exercise is the sum of 3 function calls. The first call is to ggplot with 2 arguments, diamonds and a call to aes with carat and price as arguments. The second call is to geom_boxplot with no arguments. The third is to facet_grid with one argument, the formula . ~ cut. Try this now.
 
@@ -318,4 +318,4 @@ ggplot(diamonds, aes(carat, price)) + geom_boxplot() + facet_grid(. ~ cut)
 ## Warning: Continuous y aesthetic -- did you forget aes(group=...)?
 ```
 
-![](figs/fig-unnamed-chunk-25-1.png)<!-- -->
+![](figs2/fig2-unnamed-chunk-25-1.png)<!-- -->
